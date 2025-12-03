@@ -118,6 +118,19 @@ int main()
     double a_1[] = {1.0000 ,  -3.93850912816633    ,5.83400982575703,   -3.85197152666332,    0.956543676511202};
     aplicarFiltroIIR(sum_xn, senalFiltrada_1, a_1, b_1);
     
+    FILE *archivoSenalFiltrada_1 = fopen("senalFiltrada_1.dat", "w");
+    for(int i =0; i< M; i++)
+        fprintf(archivoSenalFiltrada_1,"%f\n" ,senalFiltrada_1[i]);
+    fclose(archivoSenalFiltrada_1);
+
+    DFTGroetzel(senalFiltrada_1, espectroMagnitud);
+
+    // Guardar espectro de señal filtrada
+    FILE *archivoEspectroSenalFiltrada_1 = fopen("espectroSenalFiltrada_1.dat", "w");
+    for(int i =0; i< M; i++)
+        fprintf(archivoEspectroSenalFiltrada_1,"%f\n" ,espectroMagnitud[i]);
+    fclose(archivoEspectroSenalFiltrada_1);
+
     // Constantes del segundo filtro
     double b_2[] = { 0.978030479206561 , -3.84330162077788  ,5.7317529389578   ,-3.84330162077788   , 0.978030479206561 };
     double a_2[] = {1.0000 ,  -3.88599348009321, 5.73127022085972  , -3.80060976146257   ,  0.956543676511209 };
@@ -126,16 +139,16 @@ int main()
     DFTGroetzel(senalFiltrada_2, espectroMagnitud);
 
     // Guardar señal filtrada
-    FILE *archivoSenalFiltrada = fopen("senalFiltrada.dat", "w");
+    FILE *archivoSenalFiltrada_2 = fopen("senalFiltrada_2.dat", "w");
     for(int i =0; i< M; i++)
-        fprintf(archivoSenalFiltrada,"%f\n" ,senalFiltrada_2[i]);
-    fclose(archivoSenalFiltrada);
+        fprintf(archivoSenalFiltrada_2,"%f\n" ,senalFiltrada_2[i]);
+    fclose(archivoSenalFiltrada_2);
 
     // Guardar espectro de señal filtrada
-    FILE *archivoEspectroSenalFiltrada = fopen("espectroSenalFiltrada.dat", "w");
+    FILE *archivoEspectroSenalFiltrada_2 = fopen("espectroSenalFiltrada_2.dat", "w");
     for(int i =0; i< M; i++)
-        fprintf(archivoEspectroSenalFiltrada,"%f\n" ,espectroMagnitud[i]);
-    fclose(archivoEspectroSenalFiltrada);
+        fprintf(archivoEspectroSenalFiltrada_2,"%f\n" ,espectroMagnitud[i]);
+    fclose(archivoEspectroSenalFiltrada_2);
     
     system("gnuplot -p grafi.gp");
     return 0;

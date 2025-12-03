@@ -20,19 +20,37 @@ plot  "espectroSenalEntrada.dat"
 pause -1 "Grafica 2: Cerrar para ver siguiente\n"
 
 #------------- Graf 3 ----------------
-set title "Señal filtrada y[n]"
+set title "Señal con primer filtro y[n]"
 #unset label
 set xlabel   "N"
 set ylabel   "y[n]"
-plot  "senalFiltrada.dat"    
+plot  "senalFiltrada_1.dat"    
 pause -1 "Grafica 3: Cerrar para ver siguiente\n"
 
 #------------- Graf 4 ----------------
 set style data lines
-set title "Espectro de amplitud de señal filtrada Y[K]"
+set title "Espectro de amplitud de señal con primer filtro Y[K]"
 #unset label
 set xlabel   "N"
 set ylabel   "Y[k]"
-plot  "espectroSenalFiltrada.dat" with impulses
-pause -1 "Grafica 4: Cerrar para terminar el programa\n"
+plot  "espectroSenalFiltrada_1.dat" with impulses
+pause -1 "Grafica 4: Cerrar para ver siguiente\n"
+
+#------------- Graf 5 ----------------
+set title "Señal con segundo filtro y[n]"
+#unset label
+set xlabel   "N"
+set ylabel   "y[n]"
+plot  "senalFiltrada_2.dat"    
+pause -1 "Grafica 5: Cerrar para ver siguiente\n"
+
+
+#------------- Graf 6 ----------------
+set style data lines
+set title "Espectro de amplitud de señal totalmente filtrada Y[K]"
+#unset label
+set xlabel   "N"
+set ylabel   "Y[k]"
+plot  "espectroSenalFiltrada_2.dat" with impulses
+pause -1 "Grafica 6: Cerrar para terminar el programa\n"
 
