@@ -54,7 +54,7 @@ void aplicarFiltroIIR(double senalEntrada[], double senalFiltrada[], double a[],
  * @param[in]       xn                  Señal x[n] a la que se le quiere sacar el espectro de magnitud
  * @param[out]      espectroMagnitud    Espectro de magnitud se x[n]
  */
-void DFTGroetzel(double xn[], double espectroMagnitud[]){
+void Goertzel(double xn[], double espectroMagnitud[]){
     double sumarR;
     double sumarI;
     double V1, V2;
@@ -78,7 +78,7 @@ void DFTGroetzel(double xn[], double espectroMagnitud[]){
 
 int main()
 {
-    // Arreglos para señal a frecuencia fundamental fundamental y sus armónicos
+    // Arreglos para señal a frecuencia fundamental y sus armónicos
     double xn0[M], xn1[M],xn2[M],xn3[M],xn4[M],xn5[M];
     // Suma de señales (señal que se filtrará)
     double sum_xn[M];
@@ -104,7 +104,7 @@ int main()
     fclose(archivoSenalEntrada);
 
     // Generar espectro de magnitud de señal de entrada
-    DFTGroetzel(sum_xn, espectroMagnitud);
+    Goertzel(sum_xn, espectroMagnitud);
 
     // Guardar espectro de magnitud de señal de entrada
     FILE *archivoEspectroSenalEntrada = fopen("espectroSenalEntrada.dat", "w");
@@ -123,7 +123,7 @@ int main()
         fprintf(archivoSenalFiltrada_1,"%f\n" ,senalFiltrada_1[i]);
     fclose(archivoSenalFiltrada_1);
 
-    DFTGroetzel(senalFiltrada_1, espectroMagnitud);
+    Goertzel(senalFiltrada_1, espectroMagnitud);
 
     // Guardar espectro de señal filtrada
     FILE *archivoEspectroSenalFiltrada_1 = fopen("espectroSenalFiltrada_1.dat", "w");
@@ -136,7 +136,7 @@ int main()
     double a_2[] = {1.0000 ,  -3.88599348009321, 5.73127022085972  , -3.80060976146257   ,  0.956543676511209 };
     aplicarFiltroIIR(senalFiltrada_1, senalFiltrada_2, a_2,b_2);
     // Generar espectro de magnitud de señal filtrada
-    DFTGroetzel(senalFiltrada_2, espectroMagnitud);
+    Goertzel(senalFiltrada_2, espectroMagnitud);
 
     // Guardar señal filtrada
     FILE *archivoSenalFiltrada_2 = fopen("senalFiltrada_2.dat", "w");
