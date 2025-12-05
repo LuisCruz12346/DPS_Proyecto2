@@ -54,3 +54,18 @@ set ylabel   "Y[k]"
 plot  "espectroSenalFiltrada_2.dat" with impulses
 pause -1 "Grafica 6: Cerrar para terminar el programa\n"
 
+#------------- Graf 7 ----------------
+set title "Respuesta al impulso del primer Filtro "
+#unset label
+set xlabel   "N"
+set ylabel   "H[K]"
+plot  "filtro1.dat"    
+pause -1 "Grafica 7: Cerrar para ver siguiente\n"
+
+#------------- Graf 8 ----------------
+set title "Respuesta al impulso del Segundo Filtro "
+#unset label
+set xlabel   "N"
+set ylabel   "H[K]"
+plot  "filtro2.dat"    
+pause -1 "Grafica 7: Cerrar para ver siguiente\n"

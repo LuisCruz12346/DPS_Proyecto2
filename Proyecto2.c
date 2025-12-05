@@ -49,6 +49,24 @@ void aplicarFiltroIIR(double senalEntrada[], double senalFiltrada[], double a[],
 }
 
 /**
+ * @brief      Se modela la respuesta al impulso de cada filtro
+ *
+ * @param      Filtro1[out]         Senal que representa el H del filtro
+ * @param      a                    Coeficientes a's del filtro IIR
+ * @param      b                    Coeficientes b's del filtro IIR
+ */
+
+void RespuestaImpulsoFiltro(double Filtro1[], double a[], double b[]){
+    Filtro1[0] = b[0];
+    Filtro1[1] = -(a[1] *Filtro1[0])  + b[1];
+    Filtro1[2] = -(a[1] * Filtro1[1]) - (a[2]* Filtro1[0])  + b[2];
+    Filtro1[3] = -(a[1] * Filtro1[2]) - (a[2]* Filtro1[1]) - (a[3]* Filtro1[0])  + b[3];
+    Filtro1[4] = -(a[1] * Filtro1[3]) - (a[2]* Filtro1[2]) - (a[3]* Filtro1[1]) - (a[4]* Filtro1[0])  + b[4];
+    for(int i= 5; i<M; i++)
+        Filtro1[i] = -(a[1] * Filtro1[i-1]) - (a[2]* Filtro1[i-2]) - (a[3]* Filtro1[i-3]) - (a[4]* Filtro1[i-4]) ;
+}
+
+/**
  * @brief      Obtiene el espectro de magnitud de x[n]
  *
  * @param[in]       xn                  Señal x[n] a la que se le quiere sacar el espectro de magnitud
@@ -149,6 +167,27 @@ int main()
     for(int i =0; i< M; i++)
         fprintf(archivoEspectroSenalFiltrada_2,"%f\n" ,espectroMagnitud[i]);
     fclose(archivoEspectroSenalFiltrada_2);
+
+    // Se grafican la respuesta al impulso de cada filtro    
+    // Filtro para suprimir Fo1
+    double Filtro1[M];
+    RespuestaImpulsoFiltro(Filtro1,a_1,b_1);
+    Groetzel(Filtro1,espectroMagnitud);
+    // Se guarda el espectro del filtro
+    FILE *fil1 = fopen("filtro1.dat", "w");;  // puntero al archivo
+    for(int i =0; i< M; i++)
+        fprintf(fil1,"%f\n" ,espectroMagnitud[i]);
+    fclose(fil1);  // cerrar el archivo
+    
+    // Filtro para suprimir Fo3
+    double Filtro2[M];
+    RespuestaImpulsoFiltro(Filtro2,a_2,b_2);
+    Groetzel(Filtro2,espectroMagnitud);
+    // Se guarda el espectro del filtro
+    FILE *fil2 = fopen("filtro2.dat", "w");;  // puntero al archivo
+    for(int i =0; i< M; i++)
+        fprintf(fil2,"%f\n" ,espectroMagnitud[i]);
+    fclose(fil2);  // cerrar el archivo
     
     system("gnuplot -p grafi.gp");
     return 0;
