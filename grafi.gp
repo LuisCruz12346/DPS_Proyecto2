@@ -3,36 +3,54 @@ set grid
 set autoscale
 #------------- Graf 1 ----------------
 set style data lines
-set title "Suma de senales"
+set title "Señal de entrada x[n]"
 #unset label
 set xlabel   "N"
 set ylabel   "x[n]"
-plot  "SumS.dat"
+plot  "senalEntrada.dat"
 pause -1 "Grafica 1: Cerrar para ver siguiente\n"
 
 #------------- Graf 2 ----------------
 set style data lines
-set title "Groetzel"
+set title "Espectro de amplitud de señal de entrada X[k]"
 #unset label
 set xlabel   "N"
 set ylabel   "X[K]"
-plot  "espec.dat"
+plot  "espectroSenalEntrada.dat"
 pause -1 "Grafica 2: Cerrar para ver siguiente\n"
 
 #------------- Graf 3 ----------------
-set title "Senales despues del sistema"
+set title "Señal con primer filtro y[n]"
 #unset label
 set xlabel   "N"
 set ylabel   "y[n]"
-plot  "filsum.dat"    
+plot  "senalFiltrada_1.dat"    
 pause -1 "Grafica 3: Cerrar para ver siguiente\n"
 
 #------------- Graf 4 ----------------
 set style data lines
-set title "Groetzel"
+set title "Espectro de amplitud de señal con primer filtro Y[K]"
 #unset label
 set xlabel   "N"
 set ylabel   "Y[k]"
-plot  "xn2.dat" with impulses
-pause -1 "Grafica 4: Cerrar para terminar el programa\n"
+plot  "espectroSenalFiltrada_1.dat" with impulses
+pause -1 "Grafica 4: Cerrar para ver siguiente\n"
+
+#------------- Graf 5 ----------------
+set title "Señal con segundo filtro y[n]"
+#unset label
+set xlabel   "N"
+set ylabel   "y[n]"
+plot  "senalFiltrada_2.dat"    
+pause -1 "Grafica 5: Cerrar para ver siguiente\n"
+
+
+#------------- Graf 6 ----------------
+set style data lines
+set title "Espectro de amplitud de señal totalmente filtrada Y[K]"
+#unset label
+set xlabel   "N"
+set ylabel   "Y[k]"
+plot  "espectroSenalFiltrada_2.dat" with impulses
+pause -1 "Grafica 6: Cerrar para terminar el programa\n"
 
